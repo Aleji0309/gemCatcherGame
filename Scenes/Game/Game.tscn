@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcb7446jme4yl"]
+
+[ext_resource type="Script" uid="uid://diyd651xywcnp" path="res://Scenes/Game/Game.gd" id="1_ln2h6"]
+[ext_resource type="Texture2D" uid="uid://bsjdtmywnfmh4" path="res://assets/GameBg.png" id="1_rdw05"]
+[ext_resource type="PackedScene" uid="uid://cknbmtvjarwjv" path="res://Scenes/Paddle/Paddle.tscn" id="2_gwu2e"]
+[ext_resource type="PackedScene" uid="uid://ds56olobdiyo8" path="res://Scenes/Gem/Gem.tscn" id="3_xbxml"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_ln2h6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 332)
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("1_rdw05")
+
+[node name="Paddle" parent="." instance=ExtResource("2_gwu2e")]
+position = Vector2(559, 596)
+scale = Vector2(0.65, 0.65)
+
+[node name="Gem" parent="." instance=ExtResource("3_xbxml")]
+position = Vector2(575, 455)
+
+[node name="Gem2" parent="." instance=ExtResource("3_xbxml")]
+position = Vector2(573, 85)
+
+[node name="Gem3" parent="." instance=ExtResource("3_xbxml")]
+position = Vector2(574, 275)
+
+[connection signal="area_entered" from="Paddle" to="." method="_on_paddle_area_entered"]
+[connection signal="gem_off_screen" from="Gem" to="." method="_on_gem_off_screen"]
+[connection signal="gem_off_screen" from="Gem2" to="." method="_on_gem_off_screen"]
+[connection signal="gem_off_screen" from="Gem3" to="." method="_on_gem_off_screen"]
